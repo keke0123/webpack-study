@@ -6,19 +6,31 @@ module.exports = {
     mode: "development", // 개발자 모드
     entry: {
         index: "./src/index.js"
-        // another: "./src/another-module.js"
     },
     output: {
-        chunkFilename: "[name].bundle.js",
-        filename: "[name].bundle.js",
+        // chunkFilename: "[name].bundle.js",
+        filename: "[name].[contenthash].js",
         path: path.resolve(__dirname, "dist")
     },
     plugins: [
         new HtmlWebpackPlugin({
-            title: "Output"
+            title: "Caching"
         }),
         new CleanWebpackPlugin()
-    ]
+    ],
+    optimization: {
+        moduleIds: "hashed",
+        runtimeChunk: "single",
+        splitChunks: {
+            cacheGroups: {
+                vender: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "venders",
+                    chunks: "all"
+                }
+            }
+        }
+    }
 };
 
 // npx webpack --config webpack.config.js
