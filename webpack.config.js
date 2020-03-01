@@ -4,27 +4,26 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
     mode: "development", // 개발자 모드
-    devtool: "inline-source-map", // 개발자 도구에서 source map,
-    devServer: {
-        contentBase: "./dist"
-    },
     entry: {
-        app: "./src/index.js",
-        print: "./src/print.js"
+        index: "./src/index.js",
+        another: "./src/another-module.js"
     },
     output: {
+        // chunkFilename: "[name].bundle.js",
         filename: "[name].bundle.js",
-        path: path.resolve(__dirname, "dist"),
-        publicPath: "/"
+        path: path.resolve(__dirname, "dist")
+        // publicPath: "dist/"
     },
-    module: {
-        rules: []
+    optimization: {
+        splitChunks: {
+            chunks: "all"
+        }
     },
     plugins: [
-        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
-            title: "Output Management"
-        })
+            title: "Output"
+        }),
+        new CleanWebpackPlugin()
     ]
 };
 
