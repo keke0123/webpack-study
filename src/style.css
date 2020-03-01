@@ -1,0 +1,16 @@
+@font-face {
+    font-family: "MyFont";
+    /* src: url("./KoPubBatang-Bold.ttf") format("ttf"),
+        url("./KoPubBatang-Light.ttf") format("ttf"),
+        url("./KoPubBatang-Regular.ttf") format("ttf"); */
+    src: url("./KoPubBatang-Bold.ttf"), url("./KoPubBatang-Light.ttf"),
+        url("./KoPubBatang-Regular.ttf");
+    font-weight: 600;
+    font-style: italic;
+}
+
+.hello {
+    color: red;
+    background: url("./icon.png");
+    font-family: "MyFont";
+}
